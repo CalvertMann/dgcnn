@@ -24,7 +24,9 @@ def download():
     if not os.path.exists(os.path.join(DATA_DIR, 'modelnet40_ply_hdf5_2048')):
         www = 'https://shapenet.cs.stanford.edu/media/modelnet40_ply_hdf5_2048.zip'
         zipfile = os.path.basename(www)
-        # change security check for colab
+        # change security check for colab 
+        # Fix wget certificate issue by zellux · Pull Request #124 · charlesq34/pointnet
+        # https://github.com/charlesq34/pointnet/pull/124/commits/96f4e36648e5878e62acc82ee1481e71e009c552
         os.system('wget --no-check-certificate %s; unzip %s' % (www, zipfile))
         os.system('mv %s %s' % (zipfile[:-4], DATA_DIR))
         os.system('rm %s' % (zipfile))
